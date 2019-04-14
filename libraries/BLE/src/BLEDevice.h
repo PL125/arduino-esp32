@@ -37,6 +37,7 @@ public:
 	static BLEScan*    getScan();         // Get the scan object
 	static std::string getValue(BLEAddress bdAddress, BLEUUID serviceUUID, BLEUUID characteristicUUID);	  // Get the value of a characteristic of a service on a server.
 	static void        init(std::string deviceName);   // Initialize the local BLE environment.
+	static void        init(const char* deviceName);
 	static void        setPower(esp_power_level_t powerLevel);  // Set our power level.
 	static void        setValue(BLEAddress bdAddress, BLEUUID serviceUUID, BLEUUID characteristicUUID, std::string value);   // Set the value of a characteristic on a service on a server.
 	static std::string toString();        // Return a string representation of our device.

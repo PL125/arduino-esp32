@@ -337,6 +337,15 @@ gatts_event_handler BLEDevice::m_customGattsHandler = nullptr;
  * @param deviceName The device name of the device.
  */
 /* STATIC */ void BLEDevice::init(std::string deviceName) {
+	return init(deviceName.c_str());
+}
+
+
+/**
+ * @brief Initialize the %BLE environment.
+ * @param deviceName The device name of the device.
+ */
+/* STATIC */ void BLEDevice::init(const char* deviceName) {
 	if(!initialized){
 		initialized = true; // Set the initialization flag to ensure we are only initialized once.
 
@@ -417,7 +426,7 @@ gatts_event_handler BLEDevice::m_customGattsHandler = nullptr;
 		}
 #endif   // CONFIG_GATTS_ENABLE
 
-		errRc = ::esp_ble_gap_set_device_name(deviceName.c_str());
+		errRc = ::esp_ble_gap_set_device_name(deviceName);
 		if (errRc != ESP_OK) {
 			ESP_LOGE(LOG_TAG, "esp_ble_gap_set_device_name: rc=%d %s", errRc, GeneralUtils::errorToString(errRc));
 			return;
